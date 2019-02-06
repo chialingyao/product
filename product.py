@@ -1,12 +1,23 @@
-#讀取檔案 split 切割完的東西是清單
+import os
 products = []
-with open('products.cvs', 'r', encoding='utf-8') as f: #讀入清單
-	for line in f:
-		if '商品,價格' in line:
-			continue # 跳出迴圈 ，繼續，跳到下一回
-		name, price = line.strip().split(',') #以,切割	
-		products.append([name, price])
-print(products)
+if os.path.isfile('products.cvs'):
+	print('YA found it')
+	with open('products.cvs', 'r', encoding='utf-8') as f: #讀入清單
+		for line in f: # FOR LOOP是讀取檔案
+			if '商品,價格' in line:
+				continue # 沒有跳出迴圈 ，繼續，跳到下一回，就是看到商品,價格 直接不處理的意思 7 8行不處理 
+			name, price = line.strip().split(',') #以,切割	split 切割完的東西是清單
+			products.append([name, price])
+	print(products)
+
+
+else:
+	print('找不到檔案')
+
+
+#讀取檔案 
+
+
 #讓使用者輸入資訊
 while True:
 	name = input('請輸入商品名稱:')
